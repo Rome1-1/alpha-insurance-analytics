@@ -1,0 +1,71 @@
+import os
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the data (ensure the path is correct)
+df = pd.read_csv(r'C:\Users\teble\alpha-insurance-analytics\my_project\data\insurance_data.csv')
+
+# Create the directory to save plots if it doesn't exist
+plot_dir = r'C:\Users\teble\alpha-insurance-analytics\reports\plots'
+os.makedirs(plot_dir, exist_ok=True)  # This will create the directory if it doesn't exist
+
+# Boxplot comparing TotalClaims across CoverCategory
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='CoverCategory', y='TotalClaims', data=df)
+
+# Rotate x-axis labels for better readability
+plt.xticks(rotation=45, ha='right')
+
+# Add title
+plt.title('Claims by Cover Category')
+
+# Save and show the plot
+plt.tight_layout()
+plt.savefig(os.path.join(plot_dir, 'boxplot_claims.png'))  # Save the plot to the newly created directory
+plt.show()
+
+# Bar plot comparing TotalPremium by Country with the updated syntax
+plt.figure(figsize=(12, 6))
+sns.barplot(x='Country', y='TotalPremium', data=df, estimator=sum, errorbar=None)
+
+# Rotate x-axis labels for readability
+plt.xticks(rotation=45, ha='right')
+
+# Add title
+plt.title('Total Premium by Country')
+
+# Save and show the plot
+plt.tight_layout()
+plt.savefig(os.path.join(plot_dir, 'barplot_totalpremium_by_country.png'))  # Save the plot
+plt.show()
+
+# Count plot for Vehicle Make across Provinces
+plt.figure(figsize=(12, 6))
+sns.countplot(x='make', hue='Province', data=df)
+
+# Rotate x-axis labels for readability
+plt.xticks(rotation=45, ha='right')
+
+# Add title
+plt.title('Vehicle Make by Province')
+
+# Save and show the plot
+plt.tight_layout()
+plt.savefig(os.path.join(plot_dir, 'countplot_vehicle_make_by_province.png'))  # Save the plot
+plt.show()
+
+# Pivot table for Claims by CoverCategory and Province
+pivot_df = df.pivot_table(values='TotalClaims', index='CoverCategory', columns='Province', aggfunc='sum')
+
+# Heatmap for TotalClaims by CoverCategory and Province
+plt.figure(figsize=(12, 8))
+sns.heatmap(pivot_df, annot=True, cmap='Blues', fmt='.1f', cbar_kws={'label': 'Total Claims'})
+
+# Add title
+plt.title('Total Claims by Cover Category and Province')
+
+# Save and show the plot
+plt.tight_layout()
+plt.savefig(os.path.join(plot_dir, 'heatmap_claims_by_covercategory_and_province.png'))  # Save the plot
+plt.show()

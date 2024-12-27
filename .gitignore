@@ -1,0 +1,46 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Testing and coverage
+.tox/
+.nox/
+.coverage
+.hypothesis/
+.pytest_cache/
+
+# Compiled assets
+dist/
+build/
+node_modules/
+
+# Python package distribution
+*.egg-info/
+.egg/
+.dist-info/
+
+*.csv
+*.txt

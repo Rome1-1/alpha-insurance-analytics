@@ -1,0 +1,40 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv(r'C:\Users\teble\alpha-insurance-analytics\my_project\data\insurance_data.csv')
+
+
+# Scatter plot with ZipCode as hue (categorize data points by ZipCode)
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='TotalPremium', y='TotalClaims', hue='PostalCode', data=df, palette='viridis')
+plt.title('TotalPremium vs TotalClaims by ZipCode')
+plt.xlabel('TotalPremium')
+plt.ylabel('TotalClaims')
+plt.legend(title='ZipCode', bbox_to_anchor=(1.05, 1), loc='upper left')  # Place legend outside
+plt.tight_layout()
+plt.show()
+
+# Select numeric columns for correlation
+numeric_df = df.select_dtypes(include=[float, int])
+
+# Compute correlation matrix only for numeric columns
+correlation = numeric_df.corr()
+
+# Set the figure size and adjust the font size for better readability
+plt.figure(figsize=(10, 8))  # Increase figure size
+
+# Plot heatmap with adjusted font size and rotated labels
+sns.heatmap(correlation, annot=True, cmap='coolwarm', fmt='.2f', annot_kws={'size': 10}, cbar=True)
+
+# Rotate labels to avoid overlap
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels
+plt.yticks(rotation=45, va='top')  # Rotate y-axis labels
+
+# Title for the heatmap
+plt.title('Correlation Matrix')
+plt.tight_layout()  # Automatically adjusts the layout to make room for labels
+plt.show()
+
+

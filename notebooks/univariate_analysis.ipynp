@@ -1,0 +1,62 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load the data (ensure the path is correct)
+df = pd.read_csv(r'C:\Users\teble\alpha-insurance-analytics\my_project\data\insurance_data.csv')
+
+# Plot Histogram for TotalPremium
+plt.figure(figsize=(10, 6))
+df['TotalPremium'].hist(bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of TotalPremium')
+plt.xlabel('TotalPremium')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.show()
+
+# Plot Histogram for TotalClaims
+plt.figure(figsize=(10, 6))
+df['TotalClaims'].hist(bins=20, color='lightgreen', edgecolor='black')
+plt.title('Distribution of TotalClaims')
+plt.xlabel('TotalClaims')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.show()
+
+# Plot Histogram for SumInsured (if available in your dataset)
+plt.figure(figsize=(10, 6))
+df['SumInsured'].hist(bins=20, color='coral', edgecolor='black')
+plt.title('Distribution of SumInsured')
+plt.xlabel('SumInsured')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.show()
+
+
+# Bar chart for Gender distribution
+plt.figure(figsize=(8, 6))
+df['Gender'].value_counts().plot(kind='bar', color='dodgerblue', edgecolor='black')
+plt.title('Distribution of Gender')
+plt.xlabel('Gender')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)  # Keep the labels horizontal
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+# Bar chart for MaritalStatus distribution
+plt.figure(figsize=(8, 6))
+df['MaritalStatus'].value_counts().plot(kind='bar', color='orange', edgecolor='black')
+plt.title('Distribution of MaritalStatus')
+plt.xlabel('MaritalStatus')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)  # Keep the labels horizontal
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+# Bar chart for CoverCategory distribution
+plt.figure(figsize=(12, 6))
+df['CoverCategory'].value_counts().plot(kind='bar', color='purple', edgecolor='black', width=0.8)
+plt.title('Distribution of CoverCategory')
+plt.xlabel('CoverCategory')
+plt.ylabel('Frequency')
+plt.xticks(rotation=45, ha='right')  # Rotate the labels to avoid overlap
+plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+plt.show()

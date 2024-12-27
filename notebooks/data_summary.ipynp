@@ -1,0 +1,12 @@
+import pandas as pd
+
+# Load data
+df = pd.read_csv(r'C:\Users\teble\alpha-insurance-analytics\my_project\data\insurance_data.csv')
+
+# Basic summary
+print(df.info())
+print(df.describe())
+
+# Missing values
+print(df.isnull().sum())
+
